@@ -1,0 +1,15 @@
+<?php
+namespace Coditron\Reward\Model\Source\Points;
+
+class InvitationOrder implements \Magento\Framework\Option\ArrayInterface
+{
+    /**
+     * Invitation order options
+     *
+     * @return array
+     */
+    public function toOptionArray()
+    {
+        return [['value' => '*', 'label' => __('Each')], ['value' => '1', 'label' => __('First')]];
+    }
+}

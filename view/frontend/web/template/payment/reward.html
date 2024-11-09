@@ -1,0 +1,31 @@
+<!--
+/**
+ * Coditron
+ *
+ * @category  Coditron
+ * @package   Coditron_Reward
+ * @author    Coditron
+ * @copyright Copyright (c) Coditron (https://coditron.com)
+ */
+ -->
+<div class="payment-option opc-payment-additional rewardpoints" id="reward_placer" data-bind="visible: isAvailable()">
+    <div class="payment-option-title">
+        <span data-bind="i18n: 'Reward points'"></span>
+    </div>
+    <div class="payment-option-content field choice">
+        <div class="payment-option-inner">
+            <span data-bind="html: $t(label)"></span>
+        </div>
+        <div class="actions-toolbar" id="reward-points-buttons-container">
+            <div>
+                <input class="input-text" id="reward-input" name="rewardPoints" type="number" title="Reward Value"
+                        data-validate="{'required-entry':true}" >
+            </div>
+            <div class="primary">
+                <button data-role="opc-use-reward" class="primary action action-use" data-bind="click: useRewardPoints" id="reward-button" disabled>
+                    <span><!-- ko i18n: 'Use reward points'--><!-- /ko --></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

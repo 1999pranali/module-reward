@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Coditron
+ *
+ * @category  Coditron
+ * @package   Coditron_Reward
+ * @author    Coditron
+ * @copyright Copyright (c) Coditron (https://coditron.com)
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Coditron\Reward\Observer\PlaceOrder\RestrictionInterface" type="Coditron\Reward\Observer\PlaceOrder\Restriction\Frontend"/>
+    <preference for="Coditron\Reward\Api\RewardManagementInterface" type="Coditron\Reward\Model\RewardManagement" />
+    <type name="Magento\Framework\Module\Manager">
+        <arguments>
+            <argument name="outputConfigPaths" xsi:type="array">
+                <item name="Coditron_Reward" xsi:type="const">Coditron\Reward\Helper\Data::XML_PATH_ENABLED</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Eav\Model\Entity\Setup\PropertyMapper\Composite">
+        <arguments>
+            <argument name="propertyMappers" xsi:type="array">
+                <item name="reward" xsi:type="string">Coditron\Reward\Model\ResourceModel\Setup\PropertyMapper</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Sales\Model\ResourceModel\Order\Creditmemo">
+        <plugin name="refundRewardPoints" type="Coditron\Reward\Model\Plugin\RewardPointsRefund"/>
+    </type>
+    <type name="Coditron\Reward\Observer\PlaceOrder\Restriction\Api">
+        <arguments>
+            <argument name="backend" xsi:type="object">Coditron\Reward\Observer\PlaceOrder\Restriction\Backend\Proxy</argument>
+            <argument name="frontend" xsi:type="object">Coditron\Reward\Observer\PlaceOrder\Restriction\Frontend\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Quote\Model\Cart\CartTotalRepository">
+        <plugin name="rewardTotal" type="Coditron\Reward\Model\Plugin\CartTotalRepository" />
+    </type>
+    <type name="Magento\Customer\Model\Metadata\CustomerMetadata">
+        <arguments>
+            <argument name="systemAttributes" xsi:type="array">
+                <item name="reward_update_notification" xsi:type="string">reward_update_notification</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\CustomerImportExport\Model\Import\Customer">
+        <plugin name="rewardAttributes" type="Coditron\Reward\Model\Plugin\ImportCustomer" />
+    </type>
+    <type name="Magento\Quote\Model\Quote\TotalsCollector">
+        <plugin name="quoteRewardAmountUpdater" type="Coditron\Reward\Model\Plugin\TotalsCollector" />
+    </type>
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="rewardCreditmemoUpdater" type="Coditron\Reward\Model\Plugin\OrderRepository"/>
+    </type>
+    <type name="Magento\Framework\EntityManager\Operation\ExtensionPool">
+        <arguments>
+            <argument name="extensionActions" xsi:type="array">
+                <item name="Magento\SalesRule\Api\Data\RuleInterface" xsi:type="array">
+                    <item name="create" xsi:type="array">
+                        <item name="create_reward" xsi:type="string">Coditron\Reward\Model\SalesRule\SaveHandler</item>
+                    </item>
+                    <item name="update" xsi:type="array">
+                        <item name="update_reward" xsi:type="string">Coditron\Reward\Model\SalesRule\SaveHandler</item>
+                    </item>
+                    <item name="read" xsi:type="array">
+                        <item name="read_reward" xsi:type="string">Coditron\Reward\Model\SalesRule\ReadHandler</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Coditron\Reward\Helper\Customer">
+        <arguments>
+            <argument name="frontendUrlBuilder" xsi:type="object">Magento\Framework\Url</argument>
+        </arguments>
+    </type>
+    <type name="Magento\CustomerBalance\Model\Creditmemo\Balance">
+        <plugin name="customerBalanceSave" type="Coditron\Reward\Model\Plugin\CustomerBalance" />
+    </type>
+    <type name="Magento\Eav\Model\Config">
+        <arguments>
+            <argument name="attributesForPreload" xsi:type="array">
+                <item name="customer" xsi:type="array">
+                    <item name="reward_update_notification" xsi:type="string">customer</item>
+                    <item name="reward_warning_notification" xsi:type="string">customer</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

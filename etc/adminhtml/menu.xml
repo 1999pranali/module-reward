@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Coditron
+ *
+ * @category  Coditron
+ * @package   Coditron_Reward
+ * @author    Coditron
+ * @copyright Copyright (c) Coditron (https://coditron.com)
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Coditron_Reward::customer_reward" title="Reward Exchange Rates" translate="title" module="Coditron_Reward" sortOrder="20" parent="Magento_Backend::other_settings" action="adminhtml/reward_rate" resource="Coditron_Reward::rates" dependsOnModule="Coditron_Reward" dependsOnConfig="coditron_reward/general/is_enabled"/>
+    </menu>
+</config>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Coditron
+ *
+ * @category  Coditron
+ * @package   Coditron_Reward
+ * @author    Coditron
+ * @copyright Copyright (c) Coditron (https://coditron.com)
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="adminhtml_customer_save_after">
+        <observer name="coditron_reward" instance="Coditron\Reward\Observer\SaveRewardPoints" />
+    </event>
+    <event name="review_save_commit_after">
+        <observer name="coditron_reward" instance="Coditron\Reward\Observer\ReviewSubmit" />
+    </event>
+    <event name="adminhtml_sales_order_create_process_data">
+        <observer name="coditron_reward" instance="Coditron\Reward\Observer\ProcessOrderCreationData" />
+    </event>
+    <event name="adminhtml_sales_order_creditmemo_register_before">
+        <observer name="coditron_reward" instance="Coditron\Reward\Observer\SetRewardPointsBalanceToRefund" />
+    </event>
+    <event name="website_delete_after">
+        <observer name="coditron_reward" instance="Coditron\Reward\Observer\PrepareCustomerOrphanPoints" />
+    </event>
+    <event name="order_cancel_after">
+        <observer name="coditron_reward" instance="Coditron\Reward\Observer\ReturnRewardPoints" />
+    </event>
+    <event name="payment_method_is_active">
+        <observer name="coditron_reward" instance="Coditron\Reward\Observer\PreparePaymentMethod" />
+    </event>
+</config>

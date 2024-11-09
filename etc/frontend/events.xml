@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Coditron
+ *
+ * @category  Coditron
+ * @package   Coditron_Reward
+ * @author    Coditron
+ * @copyright Copyright (c) Coditron (https://coditron.com)
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="customer_session_init">
+        <observer name="coditron_reward" instance="Coditron\Reward\Observer\CheckRates" />
+    </event>
+    <event name="payment_method_is_active">
+        <observer name="coditron_reward" instance="Coditron\Reward\Observer\PreparePaymentMethod" />
+    </event>
+</config>

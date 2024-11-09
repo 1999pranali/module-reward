@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Coditron
+ *
+ * @category  Coditron
+ * @package   Coditron_Reward
+ * @author    Coditron
+ * @copyright Copyright (c) Coditron (https://coditron.com)
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="coditron_reward_balance_warning_notification" instance="Coditron\Reward\Cron\ScheduledBalanceExpireNotification" method="execute">
+            <schedule>1 * * * *</schedule>
+        </job>
+        <job name="coditron_reward_expire_points" instance="Coditron\Reward\Cron\ScheduledPointsExpiration" method="execute">
+            <schedule>1 * * * *</schedule>
+        </job>
+    </group>
+</config>

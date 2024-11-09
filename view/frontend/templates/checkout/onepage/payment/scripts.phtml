@@ -1,0 +1,14 @@
+<?php
+/**
+ * Coditron
+ *
+ * @category  Coditron
+ * @package   Coditron_Reward
+ * @author    Coditron
+ * @copyright Copyright (c) Coditron (https://coditron.com)
+ */
+/* @var $block \Coditron\Reward\Block\Checkout\Payment\Additional */
+?>
+<?php if ($block->getCanUseRewardPoints()) :?>
+quoteBaseGrandTotal = <?= (float)$block->getQuote()->getBaseGrandTotal() ?>;
+<?php endif; ?>

@@ -1,0 +1,25 @@
+<!--
+/**
+ * Coditron
+ *
+ * @category  Coditron
+ * @package   Coditron_Reward
+ * @author    Coditron
+ * @copyright Copyright (c) Coditron (https://coditron.com)
+ */
+-->
+<!-- ko if: isAvailable() -->
+<tr class="totals rewardpoints">
+    <th class="mark" scope="row">
+        <button data-role="opc-remove-reward" class="action action-remove" data-bind="click: removeRewardPoints">
+            <span><!-- ko i18n: 'Remove'--><!-- /ko --></span>
+        </button>
+    </th>
+    <td class="amount">
+        <span data-bind="text: getValue(), attr: {'data-th': $t(title)}" class="price"></span>
+    </td>
+</tr>
+<tr class="usedrewardpoints">
+    <!-- ko text: getRewardPoints() + ' ' + $t(title)--><!-- /ko -->
+</tr>
+<!-- /ko -->
